@@ -140,7 +140,6 @@
   <ItemGroup>
     <CopyBuild Include="src\access-storage-ep.js" />
     <CopyBuild Include="src\App.js" />
-    <CopyBuild Include="src\config\manifest.json" />
     <CSSFiles Include="src\styles\*.min.css" />
     <MapFiles Include="src\Dao.js.map" />
     <MapFiles Include="src\Popup.js.map" />
