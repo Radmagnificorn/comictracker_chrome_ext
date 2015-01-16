@@ -1,6 +1,6 @@
 ﻿import UrlData = require("UrlData");
 
-class VisualUrl {
+class VisualUrl { 
 
     private _selection: number = -1;
     private _listeners = new Array<{(): void}>();

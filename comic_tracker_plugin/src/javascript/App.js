@@ -1,4 +1,0 @@
-﻿
-require(["Popup"], function (popup) {
-    
-});

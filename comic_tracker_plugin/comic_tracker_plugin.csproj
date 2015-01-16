@@ -24,17 +24,12 @@
     <Content Include="build\images\icon48.png" />
     <Content Include="build\libs\jquery-2.1.1.min.js" />
     <Content Include="build\libs\require.js" />
-    <Content Include="build\popup.html" />
-    <Content Include="build\styles\content.min.css" />
-    <Content Include="build\styles\popup.min.css" />
-    <Content Include="gulpfile.js" />
     <Content Include="npmPlaceholder.txt" />
-    <Content Include="src\javascript\access-storage-ep.js" />
-    <Content Include="src\javascript\App.js" />
+    <Content Include="src\access-storage-ep.js" />
+    <Content Include="src\App.js" />
     <Content Include="src\images\icon.png" />
     <Content Include="src\images\icon16.png" />
     <Content Include="src\images\icon48.png" />
-    <Content Include="build\manifest.json" />
     <Content Include="packages.config" />
     <Content Include="src\libs\jquery-2.1.1.min.js" />
     <Content Include="src\libs\require.js" />
@@ -77,9 +72,9 @@
     <TypeScriptCompile Include="src\VisualUrl.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\config\manifest.json" />
     <Content Include="src\styles\content.scss" />
     <Content Include="src\styles\popup.scss" />
+    <Content Include="src\config\manifest.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -89,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="build\srcmaps\" />
+    <Folder Include="build\styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
@@ -121,6 +117,7 @@
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
     <TypeScriptMapRoot>C:\Users\Stephen\Documents\comic_tracker_plugin\comic_tracker_plugin\build\srcmaps</TypeScriptMapRoot>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
@@ -141,18 +138,23 @@
   </Target>
   <Import Project="..\packages\Gulp.js.1.0.2\build\gulp.js.targets" Condition="Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" />
   <ItemGroup>
-    <CopyFiles Include="src\javascript\*.js; src\config\*.*; src\*.html"/>
-    <TSFiles Include="src\*.js"/>
-    <MapFiles Include="src\*.js.map" />
+    <CopyBuild Include="src\access-storage-ep.js" />
+    <CopyBuild Include="src\App.js" />
+    <CopyBuild Include="src\config\manifest.json" />
     <CSSFiles Include="src\styles\*.min.css" />
-    <CSSMaps Include="src\styles\*.css.map" />
+    <MapFiles Include="src\Dao.js.map" />
+    <MapFiles Include="src\Popup.js.map" />
+    <MapFiles Include="src\SaveData.js.map" />
+    <MapFiles Include="src\Series.js.map" />
+    <MapFiles Include="src\SeriesList.js.map" />
+    <MapFiles Include="src\tracker.js.map" />
+    <MapFiles Include="src\UrlData.js.map" />
+    <MapFiles Include="src\VisualUrl.js.map" />
   </ItemGroup>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="@(CopyFiles)" DestinationFolder="build" />
-    <Move SourceFiles="@(TSFiles)" DestinationFolder="build" />
-    <Move SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
-    <Move SourceFiles="@(CSSFiles)" DestinationFolder="build\styles" />
-    <Move SourceFiles="@(CSSMaps)" DestinationFolder="build\srcmaps"/>
-    
+    <Copy SourceFiles="@(CopyBuild)" DestinationFolder="build" />
+    <Copy SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
+    <Copy SourceFiles="@(CSSFiles)" DestinationFolder="build\styles" />
+    <Copy SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
   </Target>
 </Project>
