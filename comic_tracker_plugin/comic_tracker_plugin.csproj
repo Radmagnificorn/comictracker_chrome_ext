@@ -29,7 +29,8 @@
     <Content Include="build\styles\popup.min.css" />
     <Content Include="gulpfile.js" />
     <Content Include="npmPlaceholder.txt" />
-    <Content Include="src\App.js" />
+    <Content Include="src\javascript\access-storage-ep.js" />
+    <Content Include="src\javascript\App.js" />
     <Content Include="src\images\icon.png" />
     <Content Include="src\images\icon16.png" />
     <Content Include="src\images\icon48.png" />
@@ -140,10 +141,18 @@
   </Target>
   <Import Project="..\packages\Gulp.js.1.0.2\build\gulp.js.targets" Condition="Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" />
   <ItemGroup>
+    <CopyFiles Include="src\javascript\*.js; src\config\*.*; src\*.html"/>
+    <TSFiles Include="src\*.js"/>
     <MapFiles Include="src\*.js.map" />
+    <CSSFiles Include="src\styles\*.min.css" />
+    <CSSMaps Include="src\styles\*.css.map" />
   </ItemGroup>
   <Target Name="AfterBuild">
-    <Move SourceFiles="@(JSFiles)" DestinationFolder="build" />
+    <Copy SourceFiles="@(CopyFiles)" DestinationFolder="build" />
+    <Move SourceFiles="@(TSFiles)" DestinationFolder="build" />
     <Move SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
+    <Move SourceFiles="@(CSSFiles)" DestinationFolder="build\styles" />
+    <Move SourceFiles="@(CSSMaps)" DestinationFolder="build\srcmaps"/>
+    
   </Target>
 </Project>
