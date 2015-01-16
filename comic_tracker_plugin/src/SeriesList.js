@@ -39,4 +39,4 @@
     
     return SeriesList;
 });
-//# sourceMappingURL=SeriesList.js.map
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/SeriesList.js.map

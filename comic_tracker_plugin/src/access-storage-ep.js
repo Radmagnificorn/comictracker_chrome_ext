@@ -1,9 +1,7 @@
 /**
- * Created by Stephen on 11/10/2014.
- */
-
+* Created by Stephen on 11/10/2014.
+*/
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-
     var seriesList = JSON.parse(localStorage["seriesList"]);
 
     if (request.method === "getUrls") {
@@ -28,3 +26,4 @@ function updateLastUrl(seriesList, series) {
 
     return updated;
 }
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/access-storage-ep.js.map

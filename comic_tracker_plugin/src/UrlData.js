@@ -45,4 +45,4 @@ define(["require", "exports"], function(require, exports) {
     
     return UrlData;
 });
-//# sourceMappingURL=UrlData.js.map
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/UrlData.js.map

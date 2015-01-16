@@ -19,24 +19,16 @@
     <NuGetPackageImportStamp>7730574e</NuGetPackageImportStamp>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="build\access-storage-ep.js" />
-    <Content Include="build\App.js" />
-    <Content Include="build\Dao.js" />
     <Content Include="build\images\icon.png" />
     <Content Include="build\images\icon16.png" />
     <Content Include="build\images\icon48.png" />
     <Content Include="build\libs\jquery-2.1.1.min.js" />
     <Content Include="build\libs\require.js" />
     <Content Include="build\popup.html" />
-    <Content Include="build\Popup.js" />
-    <Content Include="build\SaveData.js" />
-    <Content Include="build\Series.js" />
-    <Content Include="build\tracker.js" />
-    <Content Include="build\UrlData.js" />
-    <Content Include="build\VisualUrl.js" />
+    <Content Include="build\styles\content.min.css" />
+    <Content Include="build\styles\popup.min.css" />
     <Content Include="gulpfile.js" />
     <Content Include="npmPlaceholder.txt" />
-    <Content Include="src\access-storage-ep.js" />
     <Content Include="src\App.js" />
     <Content Include="src\images\icon.png" />
     <Content Include="src\images\icon16.png" />
@@ -95,7 +87,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="build\styles\" />
+    <Folder Include="build\srcmaps\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
@@ -127,6 +119,7 @@
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <TypeScriptMapRoot>C:\Users\Stephen\Documents\comic_tracker_plugin\comic_tracker_plugin\build\srcmaps</TypeScriptMapRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
@@ -134,7 +127,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>gulp build</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Npm.js.1.3.15.7\build\npm.js.targets" Condition="Exists('..\packages\Npm.js.1.3.15.7\build\npm.js.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -145,4 +139,11 @@
     <Error Condition="!Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Gulp.js.1.0.2\build\gulp.js.targets'))" />
   </Target>
   <Import Project="..\packages\Gulp.js.1.0.2\build\gulp.js.targets" Condition="Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" />
+  <ItemGroup>
+    <MapFiles Include="src\*.js.map" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Move SourceFiles="@(JSFiles)" DestinationFolder="build" />
+    <Move SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
+  </Target>
 </Project>

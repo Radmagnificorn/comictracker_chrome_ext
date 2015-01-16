@@ -49,4 +49,4 @@ define(["require", "exports", "UrlData", "SaveData"], function(require, exports,
     
     return Series;
 });
-//# sourceMappingURL=Series.js.map
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/Series.js.map

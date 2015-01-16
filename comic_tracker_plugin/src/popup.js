@@ -80,4 +80,4 @@ define(["require", "exports", "Series", "SeriesList", "UrlData", "VisualUrl"], f
 
     Popup.init();
 });
-//# sourceMappingURL=popup.js.map
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/popup.js.map

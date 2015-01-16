@@ -44,4 +44,4 @@ define(["require", "exports", "Series", "UrlData"], function(require, exports, S
         $("body").prepend(markup);
     }
 });
-//# sourceMappingURL=tracker.js.map
+//# sourceMappingURL=C:/Users/Stephen/Documents/comic_tracker_plugin/comic_tracker_plugin/build/srcmaps/tracker.js.map

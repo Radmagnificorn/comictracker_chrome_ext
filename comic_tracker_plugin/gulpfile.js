@@ -20,4 +20,9 @@ gulp.task('config', function () {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['styles', 'scripts', 'markup', 'config']);
+gulp.task('maps', function() {
+    return gulp.src(['src/*.js.map'])
+        .pipe(gulp.dest('build/srcmaps'));
+});
+
+gulp.task('build', ['styles', 'scripts', 'markup', 'config', 'maps']);
