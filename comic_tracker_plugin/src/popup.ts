@@ -24,7 +24,7 @@ class Popup {
     static init(): void {
         this.newComic = new Series();
 
-        this.slContainer.innerHTML = this.seriesList.generateUi();
+        this.slContainer.appendChild(this.seriesList.generateUi());
 
         this.createStep1();
 
@@ -75,7 +75,8 @@ class Popup {
             this.seriesList.addSeries(this.newComic);
             this.seriesList.save();
             this.hideAddComic();
-            this.slContainer.innerHTML = this.seriesList.generateUi();
+            this.slContainer.innerHTML = "";
+            this.slContainer.appendChild(this.seriesList.generateUi());
         });
 
         pageContainer.appendChild(vurl.render());
