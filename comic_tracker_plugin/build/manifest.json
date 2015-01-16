@@ -1,0 +1,29 @@
+{
+	"name": "Comic Tracker",
+	"version": "1.0",
+	"description": "An extension for tracking web comics",
+	"browser_action": {
+		"default_icon": "images/icon.png",
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": ["http://*/*"],
+			"css": ["styles/content.min.css"],
+			"js": ["libs/jquery-2.1.1.min.js",
+				   "libs/require.js",
+				   "tracker.js"]
+		}
+	],
+	"icons": {
+	  	"16": "images/icon16.png",
+		"48": "images/icon48.png",
+	  	"128": "images/icon.png"
+	},
+	"background": {
+	  "scripts": ["access-storage-ep.js"],
+	  "persistent": false
+	},
+	"permissions": ["tabs"],
+	"manifest_version": 2
+}
