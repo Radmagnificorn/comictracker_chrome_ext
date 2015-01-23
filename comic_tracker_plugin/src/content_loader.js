@@ -1,1 +1,3 @@
-﻿require(["tracker"], function(tracker) {});
+﻿require(["tracker"], function(tracker) {
+    alert();
+});
