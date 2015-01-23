@@ -26,7 +26,8 @@
     <Content Include="build\libs\require.js" />
     <Content Include="npmPlaceholder.txt" />
     <Content Include="src\access-storage-ep.js" />
-    <Content Include="src\App.js" />
+    <Content Include="src\app_loader.js" />
+    <Content Include="src\content_loader.js" />
     <Content Include="src\images\icon.png" />
     <Content Include="src\images\icon16.png" />
     <Content Include="src\images\icon48.png" />
@@ -60,6 +61,7 @@
     <TypeScriptCompile Include="Scripts\typings\filesystem\filesystem.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\filewriter\filewriter.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\requirejs\require.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\webrtc\MediaStream.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\webrtc\RTCPeerConnection.d.ts" />
     <TypeScriptCompile Include="src\Dao.ts" />
@@ -137,16 +139,12 @@
     <Error Condition="!Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Gulp.js.1.0.2\build\gulp.js.targets'))" />
   </Target>
   <Import Project="..\packages\Gulp.js.1.0.2\build\gulp.js.targets" Condition="Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" />
-  
   <Target Name="AfterBuild">
-
     <ItemGroup>
       <CopyBuild Include="src\*.js; src\config\*" />
       <CSSFiles Include="src\styles\*.min.css" />
       <MapFiles Include="src\*.js.map; src\styles\*css.map" />
-      
     </ItemGroup>
-    
     <Copy SourceFiles="@(CopyBuild)" DestinationFolder="build" />
     <Copy SourceFiles="@(MapFiles)" DestinationFolder="build\srcmaps" />
     <Copy SourceFiles="@(CSSFiles)" DestinationFolder="build\styles" />

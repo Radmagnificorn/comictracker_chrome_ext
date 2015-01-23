@@ -1,11 +1,13 @@
-
+// <reference path="../Scripts/typings/requirejs/require.d.ts"/>
 
 import Series = require("Series");
 import UrlData = require("UrlData");
 
 
 
-    chrome.runtime.sendMessage({method: "getUrls"}, seriesDataIn => {
+//require(["Series, UrlData"], (Series, UrlData) => {
+
+    chrome.runtime.sendMessage({ method: "getUrls" }, seriesDataIn => {
         var seriesDataList = seriesDataIn.map(seriesData => new Series(seriesData));
         var currentUrl = new UrlData(window.location.href);
         var seriesData = findSeriesMatch(seriesDataList, currentUrl);
@@ -16,6 +18,7 @@ import UrlData = require("UrlData");
             saveSeries(seriesData);
         }
     });
+
 
     function findSeriesMatch(seriesList: Series[], pageUrl): Series {
 
@@ -38,7 +41,7 @@ import UrlData = require("UrlData");
     }
 
     function saveSeries(seriesData) {
-        chrome.runtime.sendMessage({method: "saveSeries", series: seriesData}, response => {
+        chrome.runtime.sendMessage({ method: "saveSeries", series: seriesData }, response => {
             $("#saveStatus").text(response ? "Page Saved" : "Save Failed");
         });
     }
@@ -51,3 +54,4 @@ import UrlData = require("UrlData");
         $("body").prepend(markup);
 
     }
+

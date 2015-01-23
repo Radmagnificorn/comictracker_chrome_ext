@@ -12,7 +12,7 @@
 			"css": ["styles/content.min.css"],
 			"js": ["libs/jquery-2.1.1.min.js",
 				   "libs/require.js",
-				   "tracker.js"]
+				   "content_loader.js"]
 		}
 	],
 	"icons": {
