@@ -7,6 +7,7 @@ import SaveData = require("SaveData");
 import UrlData = require("UrlData");
 import Dao = require("Dao");
 import VisualUrl = require("VisualUrl");
+import DataAdapters = require("DataAdapters");
 
 
 
@@ -19,7 +20,7 @@ class Popup {
     private static slContainer = <HTMLDivElement>document.getElementById("seriesList");
 
     private static newComic: Series;
-    private static seriesList = new SeriesList();
+    private static seriesList = new SeriesList(new Dao(new DataAdapters.LSAdapter()));
 
     static init(): void {
         this.newComic = new Series();

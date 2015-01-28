@@ -1,17 +1,24 @@
 
 import Series = require("Series");
-import SeriesData = require("SaveData");
+import SaveData = require("SaveData");
+import DataAdapters = require("DataAdapters");
 
 class Dao {
 
-    static saveSeriesDataList(seriesDataList: Series[]) {
-        var saveDataList = seriesDataList.map(seriesData => seriesData.getSaveData());
-        var saveDataString = JSON.stringify(saveDataList);
-        localStorage.setItem("seriesList", saveDataString);
+    private dataSource: DataAdapters.IDataAdapter;
+
+    constructor(dataSource: DataAdapters.IDataAdapter) {
+        this.dataSource = dataSource;
     }
 
-    static loadSeriesDataList(): Series[] {
-        var seriesRawData = localStorage.getItem("seriesList");
+    saveSeriesDataList(seriesDataList: Series[]) {
+        var saveDataList = seriesDataList.map(seriesData => seriesData.getSaveData());
+        var saveDataString = JSON.stringify(saveDataList);
+        this.dataSource.saveData(saveDataString);
+    }
+
+    loadSeriesDataList(): Series[] {
+        var seriesRawData = this.dataSource.loadData();
         var sDataList = [];
         if (seriesRawData) {
             try {
@@ -26,13 +33,12 @@ class Dao {
         return sDataList;
     }
 
-    static mapRawToSaveData(rawObject: any): SeriesData {
-        return new SeriesData(
+    static mapRawToSaveData(rawObject: any): SaveData {
+        return new SaveData(
             rawObject.title,
             rawObject.lastUrl,
             rawObject.seriesIdentifier,
-            rawObject.pageIdentifier,
-            rawObject.seriesSearchString
+            rawObject.pageIdentifier
         );
     }
 
@@ -40,4 +46,6 @@ class Dao {
 }
 
 export = Dao;
+
+
 

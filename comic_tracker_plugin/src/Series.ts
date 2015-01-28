@@ -8,7 +8,6 @@ class Series {
     title: string;
     seriesIdentifier: number;
     pageIdentifier: number;
-    seriesSearchString: string;
     lastUrl: UrlData;
 
     constructor(saveData?: SaveData) {
@@ -38,8 +37,7 @@ class Series {
             this.title,
             this.lastUrl.url,
             this.seriesIdentifier.toString(),
-            this.pageIdentifier.toString(),
-            this.seriesSearchString
+            this.pageIdentifier.toString()
         );
     }
 

@@ -2,14 +2,17 @@
 import Series = require("Series");
 
 class SeriesList {
-    seriesList: Series[];
 
-    constructor() {
-        this.seriesList = Dao.loadSeriesDataList();
+    seriesList: Series[];
+    private dao: Dao;
+
+    constructor(dao: Dao) {
+        this.dao = dao;
+        this.seriesList = this.dao.loadSeriesDataList();
     }
 
     save(): void {
-        Dao.saveSeriesDataList(this.seriesList);
+        this.dao.saveSeriesDataList(this.seriesList);
     }
 
     addSeries(series: Series): void {

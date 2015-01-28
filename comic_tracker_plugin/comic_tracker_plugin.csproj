@@ -26,8 +26,8 @@
     <Content Include="build\libs\require.js" />
     <Content Include="npmPlaceholder.txt" />
     <Content Include="src\access-storage-ep.js" />
-    <Content Include="src\app_loader.js" />
-    <Content Include="src\content_loader.js" />
+    <Content Include="src\jsconfig\app_loader.js" />
+    <Content Include="src\jsconfig\content_loader.js" />
     <Content Include="src\images\icon.png" />
     <Content Include="src\images\icon16.png" />
     <Content Include="src\images\icon48.png" />
@@ -56,6 +56,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\DataAdapters.ts" />
     <TypeScriptCompile Include="Scripts\typings\chrome\chrome-app.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\chrome\chrome.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\filesystem\filesystem.d.ts" />
@@ -116,9 +117,8 @@
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
     <TypeScriptModuleKind>amd</TypeScriptModuleKind>
-    <TypeScriptMapRoot>C:\Users\Stephen\Documents\comic_tracker_plugin\comic_tracker_plugin\build\srcmaps</TypeScriptMapRoot>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
@@ -141,7 +141,7 @@
   <Import Project="..\packages\Gulp.js.1.0.2\build\gulp.js.targets" Condition="Exists('..\packages\Gulp.js.1.0.2\build\gulp.js.targets')" />
   <Target Name="AfterBuild">
     <ItemGroup>
-      <CopyBuild Include="src\*.js; src\config\*" />
+      <CopyBuild Include="src\*.js; src\config\*; src\jsconfig\*" Exclude="src\I*.js" />
       <CSSFiles Include="src\styles\*.min.css" />
       <MapFiles Include="src\*.js.map; src\styles\*css.map" />
     </ItemGroup>
