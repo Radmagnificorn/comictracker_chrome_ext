@@ -42,11 +42,11 @@ function findSeriesMatch(seriesList: Series[], pageUrl): Series {
 
 function saveSeries(seriesData) {
     alert("saving series");
-    /*
+    
     chrome.runtime.sendMessage({ method: "saveSeries", series: seriesData }, response => {
         $("#saveStatus").text(response ? "Page Saved" : "Save Failed");
     });
-    */
+    
 }
 
 function showHelperUI(name, page) {

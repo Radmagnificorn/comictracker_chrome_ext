@@ -25,10 +25,10 @@ class Popup {
     static init(): void {
         this.newComic = new Series();
 
-        this.slContainer.appendChild(this.seriesList.generateUi());
-
-        this.createStep1();
-
+        this.seriesList.populateList().then(() => {
+            this.slContainer.appendChild(this.seriesList.generateUi());
+            this.createStep1();
+        });
        
     }
 

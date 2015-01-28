@@ -10,7 +10,17 @@ export class LSAdapter implements IDataAdapter {
         localStorage.setItem("seriesList", data);
     }
 }
+/*
+export class RemoteLSAdapter implements IDataAdapter {
+    loadData(): string {
+        
+    }
 
+    saveData(data: string) {
+        
+    }
+}
+*/
 export interface IDataAdapter {
     loadData: () => string;
     saveData: (string) => void;

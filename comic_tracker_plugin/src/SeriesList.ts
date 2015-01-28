@@ -1,4 +1,6 @@
-﻿import Dao = require("Dao");
+﻿/// <reference path="../Scripts/typings/es6-promise/es6-promise.d.ts"/>
+
+import Dao = require("Dao");
 import Series = require("Series");
 
 class SeriesList {
@@ -8,7 +10,22 @@ class SeriesList {
 
     constructor(dao: Dao) {
         this.dao = dao;
-        this.seriesList = this.dao.loadSeriesDataList();
+    }
+
+    populateList(): Promise<void> {
+        var promise = new Promise<void>((resolve, reject) => {
+            this.dao.loadSeriesDataList().then(
+                list => {
+                    this.seriesList = list;
+                    resolve();
+                }, err => {
+                    alert("unable to load list");
+                    reject(Error("Unable to load list"));
+                }
+            );
+        });
+
+        return promise;
     }
 
     save(): void {

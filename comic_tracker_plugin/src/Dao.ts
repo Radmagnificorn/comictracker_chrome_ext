@@ -1,3 +1,4 @@
+/// <reference path="../Scripts/typings/es6-promise/es6-promise.d.ts"/>
 
 import Series = require("Series");
 import SaveData = require("SaveData");
@@ -11,13 +12,19 @@ class Dao {
         this.dataSource = dataSource;
     }
 
-    saveSeriesDataList(seriesDataList: Series[]) {
+    saveSeriesDataList(seriesDataList: Series[]): Promise<void> {
         var saveDataList = seriesDataList.map(seriesData => seriesData.getSaveData());
         var saveDataString = JSON.stringify(saveDataList);
         this.dataSource.saveData(saveDataString);
+
+        var promise = new Promise<void>((resolve, reject) => {
+            resolve();
+        });
+
+        return promise;
     }
 
-    loadSeriesDataList(): Series[] {
+    loadSeriesDataList(): Promise<Series[]> {
         var seriesRawData = this.dataSource.loadData();
         var sDataList = [];
         if (seriesRawData) {
@@ -30,7 +37,11 @@ class Dao {
             }
         }
 
-        return sDataList;
+        var promise = new Promise<Series[]>((resolve, reject) => {
+            resolve(sDataList);
+        });
+        
+        return promise;
     }
 
     static mapRawToSaveData(rawObject: any): SaveData {
