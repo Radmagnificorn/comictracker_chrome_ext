@@ -22,7 +22,7 @@ define(["require", "exports", "UrlData", "SaveData"], function(require, exports,
         };
 
         Series.prototype.getSaveData = function () {
-            return new SaveData(this.title, this.lastUrl.url, this.seriesIdentifier.toString(), this.pageIdentifier.toString(), this.seriesSearchString);
+            return new SaveData(this.title, this.lastUrl.url, this.seriesIdentifier.toString(), this.pageIdentifier.toString());
         };
 
         Series.prototype.getFurthestRead = function () {
@@ -49,4 +49,3 @@ define(["require", "exports", "UrlData", "SaveData"], function(require, exports,
     
     return Series;
 });
-//# sourceMappingURL=Series.js.map

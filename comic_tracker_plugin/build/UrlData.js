@@ -45,4 +45,3 @@ define(["require", "exports"], function(require, exports) {
     
     return UrlData;
 });
-//# sourceMappingURL=UrlData.js.map

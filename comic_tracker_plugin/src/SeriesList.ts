@@ -10,6 +10,7 @@ class SeriesList {
 
     constructor(dao: Dao) {
         this.dao = dao;
+        this.seriesList = new Array<Series>();
     }
 
     populateList(): Promise<void> {
@@ -28,8 +29,8 @@ class SeriesList {
         return promise;
     }
 
-    save(): void {
-        this.dao.saveSeriesDataList(this.seriesList);
+    save(): Promise<void> {
+        return this.dao.saveSeriesDataList(this.seriesList);
     }
 
     addSeries(series: Series): void {

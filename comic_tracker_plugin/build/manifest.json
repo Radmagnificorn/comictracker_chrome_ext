@@ -11,8 +11,8 @@
 			"matches": ["http://*/*"],
 			"css": ["styles/content.min.css"],
 			"js": ["libs/jquery-2.1.1.min.js",
-				   "libs/require.js",
-				   "tracker.js"]
+                "libs/require.js",
+                "content_loader.js"]
 		}
 	],
 	"icons": {
@@ -21,9 +21,10 @@
 	  	"128": "images/icon.png"
 	},
 	"background": {
-	  "scripts": ["access-storage-ep.js"],
+	  "scripts": ["libs/require.js", "access-storage-ep.js"],
 	  "persistent": false
 	},
-	"permissions": ["tabs"],
+    "permissions": [ "tabs" ],
+    "web_accessible_resources": ["/*"],
 	"manifest_version": 2
 }

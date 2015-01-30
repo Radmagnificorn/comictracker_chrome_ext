@@ -1,4 +1,4 @@
-define(["require", "exports"], function(require, exports) {
+﻿define(["require", "exports"], function(require, exports) {
     var VisualUrl = (function () {
         function VisualUrl(url) {
             this.url = url;
@@ -55,4 +55,3 @@ define(["require", "exports"], function(require, exports) {
     
     return VisualUrl;
 });
-//# sourceMappingURL=VisualUrl.js.map

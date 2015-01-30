@@ -80,6 +80,7 @@
     <TypeScriptCompile Include="src\SaveData.ts" />
     <TypeScriptCompile Include="src\Series.ts" />
     <TypeScriptCompile Include="src\SeriesList.ts" />
+    <TypeScriptCompile Include="src\testtest.ts" />
     <TypeScriptCompile Include="src\tracker.ts" />
     <TypeScriptCompile Include="src\UrlData.ts" />
     <TypeScriptCompile Include="src\VisualUrl.ts" />

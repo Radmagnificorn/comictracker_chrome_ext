@@ -12,7 +12,12 @@
   <script src="lib/jasmine-2.1.3/boot.js"></script>
 
   <!-- include source files here... -->
-  <script src="../build/UrlData.js"></script>
+    <script src="../build/libs/require.js"></script>
+    <script type="text/javascript">
+        require.config({
+            baseUrl: "../build"
+        });
+    </script>
  
 
   <!-- include spec files here... -->

@@ -1,17 +1,25 @@
-define(["require", "exports", "Series", "SaveData"], function(require, exports, Series, SeriesData) {
+/// <reference path="../Scripts/typings/es6-promise/es6-promise.d.ts"/>
+define(["require", "exports", "Series", "SaveData"], function(require, exports, Series, SaveData) {
     var Dao = (function () {
-        function Dao() {
+        function Dao(dataSource) {
+            this.dataSource = dataSource;
         }
-        Dao.saveSeriesDataList = function (seriesDataList) {
+        Dao.prototype.saveSeriesDataList = function (seriesDataList) {
             var saveDataList = seriesDataList.map(function (seriesData) {
                 return seriesData.getSaveData();
             });
             var saveDataString = JSON.stringify(saveDataList);
-            localStorage.setItem("seriesList", saveDataString);
+            this.dataSource.saveData(saveDataString);
+
+            var promise = new Promise(function (resolve, reject) {
+                resolve();
+            });
+
+            return promise;
         };
 
-        Dao.loadSeriesDataList = function () {
-            var seriesRawData = localStorage.getItem("seriesList");
+        Dao.prototype.loadSeriesDataList = function () {
+            var seriesRawData = this.dataSource.loadData();
             var sDataList = [];
             if (seriesRawData) {
                 try  {
@@ -24,11 +32,15 @@ define(["require", "exports", "Series", "SaveData"], function(require, exports, 
                 }
             }
 
-            return sDataList;
+            var promise = new Promise(function (resolve, reject) {
+                resolve(sDataList);
+            });
+
+            return promise;
         };
 
         Dao.mapRawToSaveData = function (rawObject) {
-            return new SeriesData(rawObject.title, rawObject.lastUrl, rawObject.seriesIdentifier, rawObject.pageIdentifier, rawObject.seriesSearchString);
+            return new SaveData(rawObject.title, rawObject.lastUrl, rawObject.seriesIdentifier, rawObject.pageIdentifier);
         };
         return Dao;
     })();
@@ -36,4 +48,3 @@ define(["require", "exports", "Series", "SaveData"], function(require, exports, 
     
     return Dao;
 });
-//# sourceMappingURL=Dao.js.map

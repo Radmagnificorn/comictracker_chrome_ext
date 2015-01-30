@@ -1,11 +1,10 @@
-define(["require", "exports"], function(require, exports) {
+﻿define(["require", "exports"], function(require, exports) {
     var SaveData = (function () {
-        function SaveData(title, lastUrl, seriesIdentifier, pageIdentifier, seriesSearchString) {
+        function SaveData(title, lastUrl, seriesIdentifier, pageIdentifier) {
             this.title = title;
             this.lastUrl = lastUrl;
             this.seriesIdentifier = seriesIdentifier;
             this.pageIdentifier = pageIdentifier;
-            this.seriesSearchString = seriesSearchString;
         }
         return SaveData;
     })();
@@ -13,4 +12,3 @@ define(["require", "exports"], function(require, exports) {
     
     return SaveData;
 });
-//# sourceMappingURL=SaveData.js.map

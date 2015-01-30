@@ -1,15 +1,17 @@
 /// <reference path="../Scripts/typings/chrome/chrome-app.d.ts"/>
 /// <reference path="../Scripts/typings/chrome/chrome.d.ts"/>
-define(["require", "exports", "Series", "SeriesList", "UrlData", "VisualUrl"], function(require, exports, Series, SeriesList, UrlData, VisualUrl) {
+define(["require", "exports", "Series", "SeriesList", "UrlData", "Dao", "VisualUrl", "DataAdapters"], function(require, exports, Series, SeriesList, UrlData, Dao, VisualUrl, DataAdapters) {
     var Popup = (function () {
         function Popup() {
         }
         Popup.init = function () {
+            var _this = this;
             this.newComic = new Series();
 
-            this.slContainer.innerHTML = this.seriesList.generateUi();
-
-            this.createStep1();
+            this.seriesList.populateList().then(function () {
+                _this.slContainer.appendChild(_this.seriesList.generateUi());
+                _this.createStep1();
+            });
         };
 
         Popup.createStep1 = function () {
@@ -56,7 +58,8 @@ define(["require", "exports", "Series", "SeriesList", "UrlData", "VisualUrl"], f
                 _this.seriesList.addSeries(_this.newComic);
                 _this.seriesList.save();
                 _this.hideAddComic();
-                _this.slContainer.innerHTML = _this.seriesList.generateUi();
+                _this.slContainer.innerHTML = "";
+                _this.slContainer.appendChild(_this.seriesList.generateUi());
             });
 
             pageContainer.appendChild(vurl.render());
@@ -74,10 +77,9 @@ define(["require", "exports", "Series", "SeriesList", "UrlData", "VisualUrl"], f
         Popup.step3 = document.getElementById("step3");
         Popup.slContainer = document.getElementById("seriesList");
 
-        Popup.seriesList = new SeriesList();
+        Popup.seriesList = new SeriesList(new Dao(new DataAdapters.LSAdapter()));
         return Popup;
     })();
 
     Popup.init();
 });
-//# sourceMappingURL=popup.js.map
