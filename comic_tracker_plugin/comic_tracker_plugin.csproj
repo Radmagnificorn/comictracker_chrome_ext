@@ -141,7 +141,7 @@
   </PropertyGroup>
   <Target Name="AfterBuild">
     <ItemGroup>
-      <CopyBuild Include="src\*.js; src\config\*; src\jsconfig\*" Exclude="src\I*.js" />
+      <CopyBuild Include="src\*.js; src\config\*; src\jsconfig\*; src\*.html" />
       <CSSFiles Include="src\styles\*.min.css" />
       <MapFiles Include="src\*.js.map; src\styles\*css.map" />
     </ItemGroup>
