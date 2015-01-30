@@ -31,8 +31,6 @@
     <Content Include="tests\lib\jasmine-2.1.3\jasmine.js" />
     <Content Include="tests\lib\jasmine-2.1.3\jasmine_favicon.png" />
     <Content Include="tests\SpecRunner.html" />
-    <Content Include="tests\spec\PlayerSpec.js" />
-    <Content Include="tests\spec\SpecHelper.js" />
     <Content Include="tests\spec\tasksModule.spec.js" />
     <Content Include="src\access-storage-ep.js" />
     <Content Include="src\jsconfig\app_loader.js" />
