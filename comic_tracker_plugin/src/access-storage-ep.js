@@ -6,16 +6,15 @@
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
-    var seriesList = JSON.parse(localStorage["seriesList"]);
+    var seriesList = localStorage["seriesList"];
 
-    if (request.method === "getUrls") {
+    if (request.method === "loadSeriesList") {
         sendResponse(seriesList);
-    } else if (request.method === "saveSeries") {
-        var updated = updateLastUrl(seriesList, request.series);
-        if (updated) {
-            localStorage.setItem("seriesList", JSON.stringify(seriesList));
-        }
-        sendResponse(updated);
+    } else if (request.method === "saveSeriesList") {
+        
+       localStorage.setItem("seriesList", request.seriesList);
+     
+       sendResponse(true);
     }
 });
 

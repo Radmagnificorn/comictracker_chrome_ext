@@ -40,7 +40,7 @@ export class RemoteLSAdapter implements IDataAdapter {
 
         var promise = new Promise<string>((resolve, reject) => {
             try {
-                chrome.runtime.sendMessage({ method: "getUrls" }, seriesDataIn => {
+                chrome.runtime.sendMessage({ method: "loadSeriesList" }, seriesDataIn => {
                     resolve(seriesDataIn);
                 });
             } catch (err) {
@@ -55,7 +55,7 @@ export class RemoteLSAdapter implements IDataAdapter {
 
         var promise = new Promise<void>((resolve, reject) => {
             try {
-                chrome.runtime.sendMessage({ method: "saveSeries", series: data }, response => {
+                chrome.runtime.sendMessage({ method: "saveSeriesList", seriesList: data }, response => {
                     if (response) {resolve();}
                     else {reject(new Error("unable to save"));}
                 });

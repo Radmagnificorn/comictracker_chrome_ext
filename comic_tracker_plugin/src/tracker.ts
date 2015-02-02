@@ -1,21 +1,26 @@
 // <reference path="../Scripts/typings/requirejs/require.d.ts"/>
 
 import Series = require("Series");
+
 import UrlData = require("UrlData");
+import Dao = require("Dao");
+import DataAdapters = require("DataAdapters");
 
+var dao = new Dao(new DataAdapters.RemoteLSAdapter());
 
-chrome.runtime.sendMessage({ method: "getUrls" }, seriesDataIn => {
-    var seriesDataList = seriesDataIn.map(seriesData => new Series(seriesData));
+dao.loadSeriesDataList().then(seriesList => {
     var currentUrl = new UrlData(window.location.href);
-    var seriesData = findSeriesMatch(seriesDataList, currentUrl);
+    var seriesData = findSeriesMatch(seriesList, currentUrl);
 
     if (seriesData != null) {
-        
+
         showHelperUI(seriesData.title, currentUrl.parsePageNumber(seriesData.pageIdentifier));
         seriesData.lastUrl = currentUrl;
-        saveSeries(seriesData);
+        dao.saveSeriesDataList(seriesList);
     }
 });
+
+
 
 
 function findSeriesMatch(seriesList: Series[], pageUrl): Series {
@@ -40,14 +45,7 @@ function findSeriesMatch(seriesList: Series[], pageUrl): Series {
     return match;
 }
 
-function saveSeries(seriesData) {
-    alert("saving series");
-    
-    chrome.runtime.sendMessage({ method: "saveSeries", series: seriesData }, response => {
-        $("#saveStatus").text(response ? "Page Saved" : "Save Failed");
-    });
-    
-}
+
 
 function showHelperUI(name, page) {
     alert("showing helper");
