@@ -28,18 +28,23 @@ class Dao {
     }
 
     loadSeriesDataList(): Promise<Series[]> {
+        console.log("loading series data list");
         var promise = new Promise<Series[]>((resolve, reject) => {
-            this.dataSource.loadData().then(seriesRawData => {
+            this.dataSource.loadData().then(seriesJsonData => {
                 var sDataList = [];
-                if (seriesRawData) {
+                console.log(seriesJsonData);
+                if (seriesJsonData != null) {
                     try {
-                        var loadDataList = JSON.parse(seriesRawData);
+                        var loadDataList = JSON.parse(seriesJsonData);
                         sDataList = loadDataList.map(loadData => new Series(Dao.mapRawToSaveData(loadData)));
-                        resolve(sDataList);
+                        
                     } catch (err) {
                         reject(err);
                     }
                 }
+
+                resolve(sDataList);
+
             }, err => reject(err));
            
         });
