@@ -26,9 +26,10 @@ class Popup {
         this.newComic = new Series();
 
         this.seriesList.populateList().then(() => {
+            
             this.slContainer.appendChild(this.seriesList.generateUi());
             this.createStep1();
-        });
+        }, err => {console.error(err + "unable to load")});
        
     }
 

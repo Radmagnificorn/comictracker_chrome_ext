@@ -18,7 +18,12 @@ class UrlData {
     }
 
     static parseNums(text: string): number[] {
-        return text.match(/\d+/g).map((n) => parseInt(n));
+        var results = text.match(/\d+/g);
+        var nums = []; // default to no matches
+        if (results != null && results.length > 0) {
+            nums = results.map((n) => parseInt(n));
+        }
+        return nums;
     }
 
 

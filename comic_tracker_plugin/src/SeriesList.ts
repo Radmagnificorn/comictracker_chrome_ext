@@ -20,8 +20,8 @@ class SeriesList {
                     this.seriesList = list;
                     resolve();
                 }, err => {
-                    alert("unable to load list");
-                    reject(Error("Unable to load list"));
+                    console.error(err + "unable to populate list");
+                    reject(err);
                 }
             );
         });
@@ -50,7 +50,9 @@ class SeriesList {
         var delId = 0;
         
         this.seriesList.forEach(seriesData => {
+            
             var pageNumber = seriesData.getFurthestRead();
+            
             var li = d.createElement("li");
             var comicLink = d.createElement("a");
             var deleteLink = d.createElement("a");

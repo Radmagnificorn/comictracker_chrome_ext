@@ -33,19 +33,25 @@ class Dao {
             this.dataSource.loadData().then(seriesJsonData => {
                 var sDataList = [];
                 console.log(seriesJsonData);
+                
                 if (seriesJsonData != null) {
                     try {
-                        var loadDataList = JSON.parse(seriesJsonData);
+                    var loadDataList = JSON.parse(seriesJsonData);
+                        
                         sDataList = loadDataList.map(loadData => new Series(Dao.mapRawToSaveData(loadData)));
                         
                     } catch (err) {
+                        console.error(err + "couldn't load series data");
                         reject(err);
                     }
                 }
 
                 resolve(sDataList);
 
-            }, err => reject(err));
+            }, err => {
+                console.error(err + "rejecting series load");
+                reject(err);
+            });
            
         });
         

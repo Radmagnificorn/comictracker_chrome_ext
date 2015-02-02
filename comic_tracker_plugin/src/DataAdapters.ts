@@ -12,6 +12,7 @@ export class LSAdapter implements IDataAdapter {
                 var data = localStorage.getItem("seriesList");
                 resolve(data);
             } catch (err) {
+                console.error("could not complete loading of series data list");
                 reject(err);
             }
        
@@ -26,6 +27,7 @@ export class LSAdapter implements IDataAdapter {
                 localStorage.setItem("seriesList", data);
                 resolve();
             } catch (err) {
+                console.error("could not complete saving of series data list");
                 reject(err);
             }
             
@@ -44,6 +46,7 @@ export class RemoteLSAdapter implements IDataAdapter {
                     resolve(seriesDataIn);
                 });
             } catch (err) {
+                console.error("could not complete remote loading of series data list");
                 reject(err);
             }
 
@@ -60,6 +63,7 @@ export class RemoteLSAdapter implements IDataAdapter {
                     else {reject(new Error("unable to save"));}
                 });
             } catch (err) {
+                console.error("could not complete remote saving of series data list");
                 reject(err);
             }
 
